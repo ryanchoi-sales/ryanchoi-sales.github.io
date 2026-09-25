@@ -34,3 +34,4 @@ cases[0].prepend(mark('https://commons.wikimedia.org/wiki/Special:FilePath/Natio
 cases[1].prepend(mark('https://commons.wikimedia.org/wiki/Special:FilePath/UNIQLO%20logo.svg','UNIQLO 로고'));
 const cuCard=[...document.querySelectorAll('.more-grid article')].find(el=>el.textContent.includes('CU'));
 if(cuCard)cuCard.prepend(mark('https://commons.wikimedia.org/wiki/Special:FilePath/CU%20BI%20%282017%29.svg','CU 로고'));
+const academyFix=document.createElement('style');academyFix.textContent='.split-cards .case-card{grid-template-columns:92px minmax(0,1fr)!important;gap:8px 18px!important}.split-cards .case-card p{grid-column:2!important}@media(max-width:560px){.split-cards .case-card{display:block!important}}';document.head.append(academyFix);
