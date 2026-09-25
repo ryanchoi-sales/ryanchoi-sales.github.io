@@ -1,11 +1,19 @@
 const targets = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('show'); observer.unobserve(entry.target); } }), { threshold: .14 });
 targets.forEach(el => observer.observe(el));
-
 const heroArt = document.querySelector('.hero-art');
 const setHeroExplosion = () => heroArt.classList.toggle('explode', window.scrollY > window.innerHeight * .13);
 addEventListener('scroll', setHeroExplosion, { passive: true });
 setHeroExplosion();
-
 document.querySelector('.contact-button').href = 'mailto:sumtimes100@gmail.com';
 document.querySelector('.profile-card img').src = 'profile.png';
+const heroFigure = document.createElement('img');
+heroFigure.src = 'hero-person-v3.png';
+heroFigure.alt = '앞으로 걷는 Sales & Marketing 지원자 일러스트';
+heroFigure.className = 'hero-figure';
+heroFigure.style.cssText = 'position:absolute;inset:4% 8%;width:84%;height:92%;object-fit:contain;z-index:1;transition:transform 1s cubic-bezier(.2,.8,.2,1),opacity .8s;';
+heroArt.querySelector('svg').style.display = 'none';
+heroArt.prepend(heroFigure);
+const refreshFigure = () => { heroFigure.style.transform = heroArt.classList.contains('explode') ? 'scale(.80)' : 'scale(1)'; heroFigure.style.opacity = heroArt.classList.contains('explode') ? '.52' : '1'; };
+addEventListener('scroll', refreshFigure, { passive: true });
+refreshFigure();
